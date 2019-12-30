@@ -37,7 +37,7 @@ func main() {
 		os.Exit(2)
 	}
 	if *footerTemplate == "" {
-		*footerTemplate = `<div style="font-size:10px; font-family:'Times New Roman',serif; width:` + *footerWidth + `; margin:0 auto;background-color:blue;">
+		*footerTemplate = `<div style="font-size:10px; font-family:'Times New Roman',serif; width:` + *footerWidth + `; margin:0 auto;">
 		<p style="float:left; text-align:left; width:25%;">` + *footerLeft + `</p>
 		<p style="float:left; text-align:center; width:50%;">` + *footerMiddle + `</p>
 		<p style="float:left; text-align:right; width:25%;">` + *footerRight + `</p>
