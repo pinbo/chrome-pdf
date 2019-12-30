@@ -22,6 +22,8 @@ import (
 
 func main() {
 	// command line options
+	// You can add more options based on here:
+	// https://github.com/mafredri/cdp/blob/master/protocol/page/command.go
 	chromePath := flag.String("p", "google-chrome-stable", "the name OR the whole path of google chrome in your system")
 	inputHtml := flag.String("i", "", "the input html file")
 	outputPDF := flag.String("o", "output.pdf", "the output pdf file")
@@ -31,17 +33,22 @@ func main() {
 	headerTemplate := flag.String("H", "<div class='...'></div>", "header template")
 	footerTemplate := flag.String("F", "", "footer template")
 	footerWidth := flag.String("w", "90%", "footer width, can give 100%, or 6in or 12cm etc in quote")
+	marginTop := flag.Float64("T", 0.5, "Top margin in inches")
+	marginBottom := flag.Float64("B", 0.5, "Top margin in inches")
+	marginLeft := flag.Float64("L", 0.75, "Top margin in inches")
+	marginRight := flag.Float64("R", 0.75, "Top margin in inches")
 	flag.Parse()
 	if *inputHtml == "" {
 		fmt.Println("Please give -i input html file!")
 		os.Exit(2)
 	}
 	if *footerTemplate == "" {
-		*footerTemplate = `<div style="font-size:10px; font-family:'Times New Roman',serif; width:` + *footerWidth + `; margin:0 auto;">
+		*footerTemplate = `<div style="font-size:10px; font-family:'Times New Roman',serif; width:` + *footerWidth + `; margin:0 auto; margin-bottom: -0.3cm;">
 		<p style="float:left; text-align:left; width:25%;">` + *footerLeft + `</p>
 		<p style="float:left; text-align:center; width:50%;">` + *footerMiddle + `</p>
 		<p style="float:left; text-align:right; width:25%;">` + *footerRight + `</p>
 		</div>`
+
 	}
 	// get absolute path of inputHtml
 	abs, err := filepath.Abs(*inputHtml)
@@ -58,7 +65,7 @@ func main() {
 	duration := 1 * time.Second
 	time.Sleep(duration)
 	// save to pdf
-	err = run(5*time.Second, abs, *outputPDF, *headerTemplate, *footerTemplate)
+	err = run(5*time.Second, abs, *outputPDF, *headerTemplate, *footerTemplate, *marginTop, *marginBottom, *marginLeft, *marginRight)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -69,7 +76,7 @@ func main() {
 	}
 }
 
-func run(timeout time.Duration, input string, outpdf string, headerTemplate string, footerTemplate string) error {
+func run(timeout time.Duration, input string, outpdf string, headerTemplate string, footerTemplate string, marginTop float64, marginBottom float64, marginLeft float64, marginRight float64) error {
 	ctx, cancel := context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
@@ -123,12 +130,13 @@ func run(timeout time.Duration, input string, outpdf string, headerTemplate stri
 
 	// Print to PDF
 	//outpdf := "test.pdf"
+	// more options: https://github.com/mafredri/cdp/blob/master/protocol/page/command.go
 	printToPDFArgs := page.NewPrintToPDFArgs().
 		// SetPrintBackground(true).
-		// SetMarginTop(0).
-		// SetMarginBottom(0).
-		// SetMarginLeft(0).
-		// SetMarginRight(0).
+		SetMarginTop(marginTop). // in inch
+		SetMarginBottom(marginBottom).
+		SetMarginLeft(marginLeft).
+		SetMarginRight(marginRight).
 		SetDisplayHeaderFooter(true).
 		SetHeaderTemplate(headerTemplate).
 		SetFooterTemplate(footerTemplate)
