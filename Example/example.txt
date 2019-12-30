@@ -4,3 +4,5 @@
 # on MacOS, the google chrome location is most likely be the one below
 ../chrome-pdf-MacOS -i Research-statement-JZ.html -o test-on-mac.pdf -p '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 
+# on Windows 10
+../chrome-pdf.exe -i test.html -o test-win10.pdf -p "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
