@@ -41,10 +41,24 @@ Google chrome needs to be installed on your system.
 ```
 There more options in the CDC Page type (https://godoc.org/github.com/mafredri/cdp#Page), and they are all corresponding the original Page options: https://chromedevtools.github.io/devtools-protocol/tot/Page.
 
+## Tips
+
+1. You can add a `@page {margin: 1.5cm 0cm 1.5cm 0cm;}` in the css file or the **style** part of your html to modify the margin. Check the test.html for an example.
+
+2. If you cannot the see the footers, possibly your footer margin is too small. 1.5 cm is good.
+
 ## Download binaries
 
 You can go to ["**Releases**"](https://github.com/pinbo/chrome-pdf/releases) to download compiled binary file.
 
 You can also install golang on your computer, then run the command below to compile it for your own computer.
 
+`go get -u github.com/mafredri/cdp`
+
 `go build chrome-pdf.go`
+
+## Acknowledgements
+
+Thanks to the **go/cdp** package (https://github.com/mafredri/cdp), I could make this possible with Golang.
+
+Also Thanks to this article, [HTML to PDF Conversion with Headless Chrome using Go](https://medium.com/compass-true-north/go-service-to-convert-web-pages-to-pdf-using-headless-chrome-5fd9ffbae1af).
