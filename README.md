@@ -18,10 +18,18 @@ Google chrome needs to be installed on your system.
 ../chrome-pdf-Linux -i test.html -o test.pdf -w 4.875in -l "Dec. 30, 2019"  -H "<div class='text center' style=\"font-family:'Times New Roman',serif;\">qPCR Summary</div>"
 
 # Usage of .chrome-pdf:
+  -B float
+    	Bottom margin in inches (default 0.5)
   -F string
     	footer template
   -H string
     	header template (default "<div class='...'></div>")
+  -L float
+    	Left margin in inches (default 0.75)
+  -R float
+    	Right margin in inches (default 0.75)
+  -T float
+    	Top margin in inches (default 0.5)
   -i string
     	the input html file
   -l string
@@ -39,13 +47,21 @@ Google chrome needs to be installed on your system.
   -h This help.
 
 ```
+
+You need to give at least the input html file, the output pdf file name, and the Google Chrome path if different from the default.
+
 There more options in the CDC Page type (https://godoc.org/github.com/mafredri/cdp#Page), and they are all corresponding the original Page options: https://chromedevtools.github.io/devtools-protocol/tot/Page.
 
-## Tips
+## Changes
+- v1.1: add page margin settings.
 
-1. You can add a `@page {margin: 1.5cm 0cm 1.5cm 0cm;}` in the css file or the **style** part of your html to modify the margin. Check the test.html for an example.
+## Notes
 
-2. If you cannot the see the footers, possibly your footer margin is too small. 1.5 cm is good.
+1. Paper size is Letter (8.5 in x 11 in).
+
+1. You can add a `@page {margin: 1.5cm 0cm 1.5cm 0cm;}` in the css file or the **style** part of your html to modify the margin. Check the test.html for an example. You can also set this in the command line now, but the `@page` overwrites the command line margin settings.
+
+1. If you cannot the see the footers, possibly your footer margin is too small. 1.5 cm is good.
 
 ## Download binaries
 

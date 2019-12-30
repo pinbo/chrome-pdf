@@ -34,9 +34,9 @@ func main() {
 	footerTemplate := flag.String("F", "", "footer template")
 	footerWidth := flag.String("w", "90%", "footer width, can give 100%, or 6in or 12cm etc in quote")
 	marginTop := flag.Float64("T", 0.5, "Top margin in inches")
-	marginBottom := flag.Float64("B", 0.5, "Top margin in inches")
-	marginLeft := flag.Float64("L", 0.75, "Top margin in inches")
-	marginRight := flag.Float64("R", 0.75, "Top margin in inches")
+	marginBottom := flag.Float64("B", 0.5, "Bottom margin in inches")
+	marginLeft := flag.Float64("L", 0.75, "Left margin in inches")
+	marginRight := flag.Float64("R", 0.75, "Right margin in inches")
 	flag.Parse()
 	if *inputHtml == "" {
 		fmt.Println("Please give -i input html file!")
