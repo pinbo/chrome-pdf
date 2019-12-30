@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<title>qPCR Summary</title>
+<link rel="stylesheet" href="chrome://resources/css/text_defaults.css">
+<style>
+  @page {
+    margin: 1.5cm 0cm 1.5cm 0cm;
+  }
+  body {
+    margin: 0 auto;
+    width: 6.5in;
+    /*text-align: justify; */
+  }
+
+  .center {
+    flex: auto;
+    padding-left: 0.7cm;
+    padding-right: 0.7cm;
+    text-align: center;
+  }
+
+  .text {
+    font-size: 10px;
+    /*padding-left: 1in;
+    padding-right: 1in;
+    /*overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;*/
+  }
+</style>
+
+</head>
+<body>
+  <div id="content">
+  <p>I just finished a few qPCR experiments. Here I just want to summarize some experiences and lessons before I forgot them.</p>
+
+<h2 id="a-few-basic-rules-in-designing-qpcr-primers">A few basic rules in designing qPCR primers</h2>
+
+<p>You do not need fancy software to design qPCR primers. I just use <a href="http://primer3.ut.ee/">Primer3</a> to design qPCR primers like regular primers. Here are my rules.</p>
+
+<ul>
+<li>Optimum Tm at 60 °C</li>
+<li>Tm difference &lt; 2 degrees between forward and reverse primers</li>
+<li>Amplicon size 60 bp to 200 bp</li>
+<li>If possible, one primer should span an exon-exon junction to avoid amplifying genomic DNA; if the intron is big, two primers on each side of the intron will not amplifying the gDNA either.</li>
+<li>Target specific, at least 2-bp difference in the first 4 bps from the 3&rsquo; end. If the gene homeologs/paralogs are too conserved, we have to design gene-specific primers on the 5&rsquo; and 3&rsquo; UTRs. Just make sure you know the UTR size.</li>
+</ul>
+
+<h2 id="test-primer-efficiency">Test primer efficiency</h2>
+
+<p>Before using the primers, make sure to test the primer efficiency. Only primer pairs with efficiency 90% to 110% are good for using.</p>
+
+<ol>
+<li><p>make a series of dilution: depending on your gene&rsquo;s expression level, you can dilute 2x, 4x or 10x on each dilution. When the Ct get to over 34, I found qPCR is not reliable, so sometimes I need to do a regular PCR with my cDNA to increase the concentration of my gene, 10 to 15 cycles of regular PCR is enough. Then I dilute the PCR product 10x as 1x template, then dilute 4x for each dilution to make 5 dilutions.</p></li>
+
+<li><p>Check the melting point after the qPCR run. If the melting peak is not unique, your primers are not specific.</p></li>
+
+<li><p>If the melting point is good, you can go ahead to calculate the efficiency. Here is <a href="https://biosistemika.com/blog/qpcr-efficiency-over-100/">a good article</a> for you to learn how to do that.</p></li>
+</ol>
+
+<h2 id="other-tricks">Other tricks</h2>
+
+<ul>
+<li>Always have negative controls (water)</li>
+<li>Always use filter tips to avoid contamination</li>
+<li>Have more than 3 biological replicates</li>
+<li>I usually do not do technical replicates when I have enough biological replicates.</li>
+<li>Choose a good internal control, ACTIN is not always good, depending on your tissue and stage.</li>
+<li>Sometimes you need to set the threshold manually, for example, when to compare two different runs for the same set of samples.</li>
+</ul>
+
+<h2 id="update-2019-03-22">Update 2019-03-22</h2>
+
+<p>I repeated my qPCR using the same set of primers for several times, and later I found I got contaminations, because my negative control (water) also got strong amplification (Ct &lt; 34). So I have to order new primers, replace all reagents, clean my bench and pipettes with 10% bleach, and even changed new clothes and prepared the qPCR in a hood. So here is something more to consider:</p>
+
+<ul>
+<li>Do not open your PCR tubes in the preparation area to avoid contamination around your bench.</li>
+<li>Always use filter tips and change gloves often too.</li>
+<li>You may also need to consider setting another negative control: reverse transcription control (with or without reverse transcriptase), which will tell you the genomic DNA contamination and whether your reverse transcription is good.</li>
+</ul>
+
+  </div>
+</body>
+</html>
